@@ -109,6 +109,14 @@ button {
 
 }
 
+@media (min-width: 1440px) {
+
+  .Chapter__container {
+    width: 50%;
+  }
+  
+}
+
 @media (min-width: 2560px) {
 
   .Search {

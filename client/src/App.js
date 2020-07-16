@@ -7,6 +7,7 @@ const Bible = () => {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [filteredVerses, setFilteredVerses] = useState([]);
+  const [input, setInput] = useState(false);
 
   useEffect(() => {
     setLoading(false);
@@ -23,16 +24,20 @@ const Bible = () => {
       .then((res) => res.json())
       .then((data) => {
         setChapter(data.chapter[0].verse);
+        setInput(true);
       });
   };
 
+
   const refresh = () => {
     setChapter([]);
+    setInput(false);
   };
 
   if (loading) {
     return <p>Loading...</p>;
   }
+
 
   return (
     <main className="App">
@@ -48,7 +53,7 @@ const Bible = () => {
 
       <Navbar updateChapter={renderChapter} updateSearch={setSearch} />
 
-      <input className="Search" type="text" placeholder="Search..." onChange={(e) => setSearch(e.target.value)} />
+      {input && <input className="Search" type="text" placeholder="Search..." onChange={(e) => setSearch(e.target.value)} />}
 
       <section className="Chapter__container">
         {filteredVerses.map((verse) => (

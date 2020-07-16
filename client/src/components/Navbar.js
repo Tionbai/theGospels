@@ -5,7 +5,9 @@ export default function Navbar(props) {
   const updateChapter = (book) => {
     props.updateChapter(book);
     props.updateSearch('');
-    document.querySelector('.Search').value = '';
+    if(document.querySelector('.Search')) {
+      document.querySelector('.Search').value = '';
+    }
   };
 
   return (

@@ -5,45 +5,24 @@ export default function Navbar(props) {
   const updateChapter = (book) => {
     props.updateChapter(book);
     props.updateSearch('');
-    if(document.querySelector('.Search')) {
+    if (document.querySelector('.Search')) {
       document.querySelector('.Search').value = '';
     }
   };
 
   return (
     <nav className="Nav">
-      <button
-        type="submit"
-        onClick={() => {
-          updateChapter('matthew');
-        }}
-      >
-        Matthew
-      </button>
-      <button
-        type="button"
-        onClick={() => {
-          updateChapter('mark');
-        }}
-      >
-        Mark
-      </button>
-      <button
-        type="submit"
-        onClick={() => {
-          updateChapter('luke');
-        }}
-      >
-        Luke
-      </button>
-      <button
-        type="submit"
-        onClick={() => {
-          updateChapter('john');
-        }}
-      >
-        John
-      </button>
+      {props.gospels.map((gospel) => {
+        return <button 
+          key={props.gospels.indexOf(gospel)}
+          type="submit"
+          onClick={() => {
+            updateChapter(gospel);
+          }}
+        >
+          {`${gospel}`}
+        </button>
+      })}
     </nav>
   );
 }

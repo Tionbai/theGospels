@@ -17,10 +17,6 @@ const Bible = () => {
 
   const gospels = ['Matthew', 'Mark', 'Luke', 'John'];
 
-  // useEffect(() => {
-  //   setLoading(false);
-  // }, []);
-
   useEffect(() => {
     setFilteredText(
       chapter.filter((verse) => verse.text.toLowerCase().includes(search.toLowerCase())),
@@ -30,35 +26,37 @@ const Bible = () => {
   useEffect(() => {
     const fetchGospels = () => {
       const fetchedGospels = [];
-      gospels.forEach(async (gospel) => {
+      gospels.map(async (gospel) => {
         const response = await fetch(`/api/bible/${gospel}`);
         const data = await response.json();
         fetchedGospels.push(data);
-        setBible([...fetchedGospels], data);
+        setBible([...fetchedGospels]);
       })
     }
     fetchGospels();
-  }, []);
+  }, [])
 
   const renderChapter = (gospel, chapterIndex = 0) => {
     const index = gospels.indexOf(gospel);
     const book = bible[index];
-    setChapter(book.chapter[chapterIndex].verse)
+    setChapter(book.chapters[chapterIndex].verses)
     setCurrentPage(chapterIndex)
     setBook(bible[gospels.indexOf(gospel)]);
-    setPageNumbers(book.chapter.length - 1);
+    setPageNumbers(book.chapters.length - 1);
     setReading(true);
   }
 
   const renderPage = (direction) => {
     switch (direction) {
       case -1:
-        currentPage > 0 && setChapter(book.chapter[currentPage - 1].verse);
+        currentPage > 0 && setChapter(book.chapters[currentPage - 1].verses);
         currentPage > 0 && setCurrentPage(currentPage - 1);
         break;
       case 1:
-        currentPage < pageNumbers && setChapter(book.chapter[currentPage + 1].verse);
+        currentPage < pageNumbers && setChapter(book.chapters[currentPage + 1].verses);
         currentPage < pageNumbers && setCurrentPage(currentPage + 1)
+        break;
+      default:
         break;
     }
   }

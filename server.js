@@ -25,17 +25,6 @@ app.get('/api/bible/john', (req, res) => {
   res.json(john)
 })
 
-// app.get('/api/bible/chapter/:id', (req, res) => {
-//   const found = matthew.chapter.some(chapter => chapter.id === parseInt(req.params.id));
-
-//   if(found) {
-//     res.json(matthew.chapter.filter(chapter => chapter.id === parseInt(req.params.id)))
-//   } else {
-//     res.json(420, { message: `Chapter ${req.params.id} does not exist.` } )
-//   }
-
-// })
-
 const port = 5000;
 
-app.listen(port, () => console.log(`Server running on port ${port}`)); 
+app.listen(port, () => console.log(`Server running on port ${port}`));

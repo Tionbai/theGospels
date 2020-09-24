@@ -1,43 +1,53 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
+import Filter from './components/Filter';
+import Pages from './components/Pages';
 
 const Bible = () => {
+  const [bible, setBible] = useState(false);
+  const [book, setBook] = useState(false);
   const [chapter, setChapter] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
-  const [filteredVerses, setFilteredVerses] = useState([]);
-  const [input, setInput] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [pageNumbers, setPageNumbers] = useState([]);
+
+  const gospels = ['Matthew', 'Mark', 'Luke', 'John'];
+  const buttons = [...document.querySelectorAll('BUTTON')];
 
   useEffect(() => {
-    setLoading(false);
-  }, []);
+    const fetchGospels = () => {
+      const fetchedGospels = [];
+      gospels.map(async (gospel) => {
+        const response = await fetch(`/api/bible/${gospel}`);
+        const data = await response.json();
+        fetchedGospels.push(data);
+        setBible([...fetchedGospels]);
+      })
+    }
+    fetchGospels();
+  }, [])
 
-  useEffect(() => {
-    setFilteredVerses(
-      chapter.filter((verse) => verse.text.toLowerCase().includes(search.toLowerCase())),
-    );
-  }, [search, chapter]);
-
-  const renderChapter = (book) => {
-    fetch(`/api/bible/${book}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setChapter(data.chapter[0].verse);
-        setInput(true);
-      });
-  };
-
-
-  const refresh = () => {
-    setChapter([]);
-    setInput(false);
-  };
-
-  if (loading) {
-    return <p>Loading...</p>;
+  const renderChapter = (gospel, chapterIndex = 0) => {
+    const index = gospels.indexOf(gospel);
+    const selectedBook = bible[index].chapters;
+    setBook(bible[gospels.indexOf(gospel)]);
+    setChapter(selectedBook[chapterIndex].verses);
+    setPageNumbers(selectedBook.length - 1);
+    setCurrentPage(chapterIndex);
   }
 
+  const refresh = () => {
+    setBook(false);
+    setChapter([]);
+    buttons.map((button) => {
+      button.classList.remove('selected');
+    })
+  };
+  
+  if (!bible) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <main className="App">
@@ -51,18 +61,15 @@ const Bible = () => {
         The Gospels
       </h1>
 
-      <Navbar updateChapter={renderChapter} updateSearch={setSearch} />
+      <Navbar renderChapter={renderChapter} setSearch={setSearch} gospels={gospels} buttons={buttons}/>
 
-      {input && <input className="Search" type="text" placeholder="Search..." onChange={(e) => setSearch(e.target.value)} />}
+      {book && <input className="Search" type="text" placeholder="Search..." onChange={(e) => setSearch(e.target.value)} />}
 
-      <section className="Chapter__container">
-        {filteredVerses.map((verse) => (
-          <article key={verse.id} className="Chapter__verse">
-            <p className="Chapter__verse--id">{verse.id}</p>
-            <p className="Chapter__verse--text">{` ${verse.text} `}</p>
-          </article>
-        ))}
-      </section>
+      {book && <Pages setSearch={setSearch} setChapter={setChapter} currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumbers={pageNumbers} book={book} />}
+
+      <Filter search={search} chapter={chapter} />
+
+      {book && <Pages setSearch={setSearch} setChapter={setChapter} currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumbers={pageNumbers} book={book} />}
 
     </main>
   );

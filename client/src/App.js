@@ -68,11 +68,11 @@ const Bible = () => {
       <>
         <Input book={book} setSearch={setSearch} chapter={chapter}/>
         
-        <Pages setSearch={setSearch} setChapter={setChapter} currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumbers={pageNumbers} />
+        <Pages setSearch={setSearch} setChapter={setChapter} currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumbers={pageNumbers} book={book}/>
 
         <Filter search={search} chapter={chapter} />
         
-        <Pages setSearch={setSearch} setChapter={setChapter} currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumbers={pageNumbers} />
+        <Pages setSearch={setSearch} setChapter={setChapter} currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumbers={pageNumbers} book={book}/>
       </>}
 
     </main>

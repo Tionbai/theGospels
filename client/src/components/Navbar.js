@@ -2,22 +2,28 @@ import React from 'react';
 import propTypes from 'prop-types';
 
 export default function Navbar(props) {
-  const updateChapter = (book) => {
-    props.updateChapter(book);
-    props.updateSearch('');
-    if (document.querySelector('.Search')) {
-      document.querySelector('.Search').value = '';
+  const {
+    gospels,
+    buttons,
+  } = props;
+
+  const selectButton = (gospel) => {
+    for (let i = 0; i < gospels.length; i++) {
+      buttons[i].classList.remove('selected');
+      const button = buttons.filter(button => button.innerHTML === gospel);
+      button[0].classList.add('selected');
     }
-  };
+  }
 
   return (
     <nav className="Nav">
-      {props.gospels.map((gospel) => {
-        return <button 
-          key={props.gospels.indexOf(gospel)}
+      {gospels.map((gospel) => {
+        return <button
+          key={gospels.indexOf(gospel)}
           type="submit"
           onClick={() => {
-            updateChapter(gospel);
+            props.renderChapter(gospel);
+            selectButton(gospel)
           }}
         >
           {`${gospel}`}
@@ -28,6 +34,5 @@ export default function Navbar(props) {
 }
 
 Navbar.propTypes = {
-  updateChapter: propTypes.func.isRequired,
-  updateSearch: propTypes.func.isRequired,
+  renderChapter: propTypes.func.isRequired,
 };

@@ -1,24 +1,43 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 export default function Pages(props) {
-    const updatePage = (page) => {
-            props.updatePage(page);
-            props.updateSearch('');
-            if (document.querySelector('.Search')) {
-              document.querySelector('.Search').value = '';
-            }
-          };    
+  const {
+    currentPage, 
+    book, 
+    pageNumbers
+   } = props;
 
-   return (
-        <section className="Pages">
-            <button 
-            type="submit"
-            onClick={() => {
-            updatePage(-1)}}>Prev page</button>
-            <button 
-            type="submit"
-            onClick={() => {
-            updatePage(1)}}>Next page</button>
-        </section>
-    )
+  const renderPage = (direction) => {
+    switch (direction) {
+      case -1:
+        currentPage > 0 && props.setChapter(book.chapters[currentPage - 1].verses);
+        currentPage > 0 && props.setCurrentPage(currentPage - 1);
+        break;
+      case 1:
+        currentPage < pageNumbers && props.setChapter(book.chapters[currentPage + 1].verses);
+        currentPage < pageNumbers && props.setCurrentPage(currentPage + 1)
+        break;
+      default:
+        break;
+    }
+  }
+
+  return (
+    <section className="Pages">
+      <button
+        className={currentPage === 0 ? 'selected' : ''}
+        type="submit"
+        onClick={() => {
+          renderPage(-1)
+          props.setSearch('')
+        }}>Prev page</button>
+      <button
+        className={currentPage === parseInt(pageNumbers) ? 'selected' : ''}
+        type="submit"
+        onClick={() => {
+          renderPage(1)
+          props.setSearch('')
+        }}>Next page</button>
+    </section>
+  )
 }

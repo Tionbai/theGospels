@@ -5,23 +5,15 @@ import Filter from './components/Filter';
 import Pages from './components/Pages';
 
 const Bible = () => {
-  const [bible, setBible] = useState([]);
-  const [book, setBook] = useState([]);
+  const [bible, setBible] = useState(false);
+  const [book, setBook] = useState(false);
   const [chapter, setChapter] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState('');
-  const [filteredText, setFilteredText] = useState([]);
-  const [reading, setReading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
   const [pageNumbers, setPageNumbers] = useState([]);
 
   const gospels = ['Matthew', 'Mark', 'Luke', 'John'];
-
-  useEffect(() => {
-    setFilteredText(
-      chapter.filter((verse) => verse.text.toLowerCase().includes(search.toLowerCase())),
-    );
-  }, [search, chapter]);
+  const buttons = [...document.querySelectorAll('BUTTON')];
 
   useEffect(() => {
     const fetchGospels = () => {
@@ -38,36 +30,22 @@ const Bible = () => {
 
   const renderChapter = (gospel, chapterIndex = 0) => {
     const index = gospels.indexOf(gospel);
-    const book = bible[index];
-    setChapter(book.chapters[chapterIndex].verses)
-    setCurrentPage(chapterIndex)
+    const selectedBook = bible[index].chapters;
     setBook(bible[gospels.indexOf(gospel)]);
-    setPageNumbers(book.chapters.length - 1);
-    setReading(true);
-  }
-
-  const renderPage = (direction) => {
-    switch (direction) {
-      case -1:
-        currentPage > 0 && setChapter(book.chapters[currentPage - 1].verses);
-        currentPage > 0 && setCurrentPage(currentPage - 1);
-        break;
-      case 1:
-        currentPage < pageNumbers && setChapter(book.chapters[currentPage + 1].verses);
-        currentPage < pageNumbers && setCurrentPage(currentPage + 1)
-        break;
-      default:
-        break;
-    }
+    setChapter(selectedBook[chapterIndex].verses);
+    setPageNumbers(selectedBook.length - 1);
+    setCurrentPage(chapterIndex);
   }
 
   const refresh = () => {
-    setBook([]);
+    setBook(false);
     setChapter([]);
-    setReading(false);
+    buttons.map((button) => {
+      button.classList.remove('selected');
+    })
   };
-
-  if (loading) {
+  
+  if (!bible) {
     return <p>Loading...</p>;
   }
 
@@ -83,15 +61,15 @@ const Bible = () => {
         The Gospels
       </h1>
 
-      <Navbar updateChapter={renderChapter} updateSearch={setSearch} gospels={gospels} />
+      <Navbar renderChapter={renderChapter} setSearch={setSearch} gospels={gospels} buttons={buttons}/>
 
-      {reading && <input className="Search" type="text" placeholder="Search..." onChange={(e) => setSearch(e.target.value)} />}
+      {book && <input className="Search" type="text" placeholder="Search..." onChange={(e) => setSearch(e.target.value)} />}
 
-      {reading && <Pages updatePage={renderPage} updateSearch={setSearch} />}
+      {book && <Pages setSearch={setSearch} setChapter={setChapter} currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumbers={pageNumbers} book={book} />}
 
-      <Filter filteredText={filteredText} />
+      <Filter search={search} chapter={chapter} />
 
-      {reading && <Pages updatePage={renderPage} updateSearch={setSearch} />}
+      {book && <Pages setSearch={setSearch} setChapter={setChapter} currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumbers={pageNumbers} book={book} />}
 
     </main>
   );

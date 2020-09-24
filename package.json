@@ -4,7 +4,7 @@
   "description": "Express server with local data to share api with the gospels of Jesus Christ",
   "main": "server.js",
   "scripts": {
-    "client-install": "cd .. && cd client && npm install",
+    "install": "npm install && cd client && npm install",
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
@@ -20,7 +20,6 @@
   },
   "devDependencies": {
     "axios": "^0.20.0",
-    "http-proxy-middleware": "^1.0.5",
     "nodemon": "^2.0.4"
   }
 }

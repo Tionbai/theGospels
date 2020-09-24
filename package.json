@@ -1,5 +1,5 @@
 {
-  "name": "theGospels-express",
+  "name": "the-gospels-express",
   "version": "1.0.0",
   "description": "Express server with local data to share api with the gospels of Jesus Christ",
   "main": "server.js",

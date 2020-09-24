@@ -14,12 +14,6 @@ export default function Filter(props) {
     );
   }, [search, chapter]);
 
-  useEffect(() => {
-    if (document.querySelector('.Search')) {
-      document.querySelector('.Search').value = '';
-    }
-  }, [chapter])
-
   return (
     <section className="Chapter__container">
       {filteredText.map((verse) => (

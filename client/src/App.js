@@ -3,6 +3,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Filter from './components/Filter';
 import Pages from './components/Pages';
+import Input from './components/Input';
 
 const Bible = () => {
   const [bible, setBible] = useState(false);
@@ -63,13 +64,16 @@ const Bible = () => {
 
       <Navbar renderChapter={renderChapter} setSearch={setSearch} gospels={gospels} buttons={buttons}/>
 
-      {book && <input className="Search" type="text" placeholder="Search..." onChange={(e) => setSearch(e.target.value)} />}
+      {book && 
+      <>
+        <Input book={book} setSearch={setSearch} chapter={chapter}/>
+        
+        <Pages setSearch={setSearch} setChapter={setChapter} currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumbers={pageNumbers} />
 
-      {book && <Pages setSearch={setSearch} setChapter={setChapter} currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumbers={pageNumbers} book={book} />}
-
-      <Filter search={search} chapter={chapter} />
-
-      {book && <Pages setSearch={setSearch} setChapter={setChapter} currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumbers={pageNumbers} book={book} />}
+        <Filter search={search} chapter={chapter} />
+        
+        <Pages setSearch={setSearch} setChapter={setChapter} currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumbers={pageNumbers} />
+      </>}
 
     </main>
   );

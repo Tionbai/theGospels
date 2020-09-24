@@ -29,6 +29,11 @@
   border-bottom: 1px solid black;
 }
 
+.Input {
+  display: flex;
+  align-items: center;
+}
+
 .Search {
   width: 50%;
   height: 25px;
@@ -37,6 +42,13 @@
   border: 0;
   border-bottom: 1px solid grey;
   outline: none;
+  flex: 1
+}
+
+.label {
+  margin-left: 0.5em;
+  font-size: 0.8em;
+  color: dimgray;
 }
 
 .Pages {

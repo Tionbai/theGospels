@@ -7,22 +7,15 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
+const gospels = [matthew, mark, luke, john];
+
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.get('/api/bible/matthew', (req, res) => {
-  res.json(matthew);
-})
+app.get('/api/bible/:id', (req, res) => {
+  const gospel = gospels.find(g => g.name.toLowerCase() === req.params.id.toLowerCase());
 
-app.get('/api/bible/mark', (req, res) => {
-  res.json(mark)
-})
-
-app.get('/api/bible/luke', (req, res) => {
-  res.json(luke)
-})
-
-app.get('/api/bible/john', (req, res) => {
-  res.json(john)
+  if(!gospel) res.status(404).send('The page you requested does not exist.');
+  res.json(gospel);
 })
 
 const port = 5000;

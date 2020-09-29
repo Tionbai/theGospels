@@ -24,20 +24,25 @@ export default function Pages(props) {
 
   return (
     <section className="Pages">
+
       <button
-        className={currentPage === 0 ? 'selected' : ''}
+        className={'btn--pages' + (currentPage === 0 ? ' selected' : '')}
         type="submit"
         onClick={() => {
           renderPage(-1)
           props.setSearch('')
-        }}>Prev page</button>
+        }}>Previous page</button>
+
+        <p>{'Chapter ' + (currentPage + 1) + ' of ' + (pageNumbers)}</p>
+
       <button
-        className={currentPage === parseInt(pageNumbers) ? 'selected' : ''}
+        className={'btn--pages' + (currentPage === parseInt(pageNumbers) ? ' selected' : '')}
         type="submit"
         onClick={() => {
           renderPage(1)
           props.setSearch('')
         }}>Next page</button>
+
     </section>
   )
 }

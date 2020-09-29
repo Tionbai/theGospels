@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Navbar from './components/Navbar';
+import Gospels from './components/Gospels';
 import Filter from './components/Filter';
 import Pages from './components/Pages';
 import Input from './components/Input';
+import Header from './components/Header';
 
 const Bible = () => {
   const [bible, setBible] = useState(false);
@@ -38,42 +39,28 @@ const Bible = () => {
     setCurrentPage(chapterIndex);
   }
 
-  const refresh = () => {
-    setBook(false);
-    setChapter([]);
-    buttons.map((button) => {
-      button.classList.remove('selected');
-    })
-  };
-  
   if (!bible) {
     return <p>Loading...</p>;
   }
 
   return (
     <main className="App">
-      <h1
-        className="Header__title"
-        role="presentation"
-        onClick={() => {
-          refresh();
-        }}
-      >
-        The Gospels
-      </h1>
 
-      <Navbar renderChapter={renderChapter} setSearch={setSearch} gospels={gospels} buttons={buttons}/>
+    <Header setBook={setBook} setChapter={setChapter} buttons={buttons} gospels={gospels} renderChapter={renderChapter}/>
 
-      {book && 
-      <>
-        <Input book={book} setSearch={setSearch} chapter={chapter}/>
-        
-        <Pages setSearch={setSearch} setChapter={setChapter} currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumbers={pageNumbers} book={book}/>
+      <Gospels book={book} renderChapter={renderChapter} setSearch={setSearch} gospels={gospels} buttons={buttons} />
 
-        <Filter search={search} chapter={chapter} />
-        
-        <Pages setSearch={setSearch} setChapter={setChapter} currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumbers={pageNumbers} book={book}/>
-      </>}
+      {book &&
+        <>
+
+          <Input chapter={chapter} setSearch={setSearch}></Input>
+
+          <Pages setSearch={setSearch} setChapter={setChapter} currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumbers={pageNumbers} book={book} />
+
+          <Filter search={search} chapter={chapter} />
+
+          <Pages setSearch={setSearch} setChapter={setChapter} currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumbers={pageNumbers} book={book} />
+        </>}
 
     </main>
   );

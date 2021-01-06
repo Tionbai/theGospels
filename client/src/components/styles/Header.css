@@ -1,8 +1,7 @@
 .Header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    position: relative;
     width: 100%;
     height: 60px;
   }
@@ -12,56 +11,36 @@
     font-size: 1.25em;
     cursor: pointer;
   }
-  
-  .Header__burger {
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-    left: 5%;
+
+  .Header__burger, .Header__login {
+    width: 30px;
     font-size: 1.25em;
-    width: 20%;
     cursor: pointer;
-    background: none;
   }
   
-  .Header__character {
-    display: flex;
-    position: absolute;
-    right: 5%;
-    font-size: 1.25em;
-    cursor: pointer;
+  .Header__burger {
+    margin-left: 10px;
+  }
+  
+  .Header__login {
+    margin-right: 10px;
   }
 
   .Header__opened {
     z-index: 1;
-    position: absolute;
-    width: 150px;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    border: 1px solid black;
-    background: rgb(117, 43, 43);
     display: flex;
     flex-direction: column;
-    padding-top: 10%;
-    border-radius: 0px 10px 10px 0px;
-  }
-
-  .Header__burger--opened {
-    display: flex;
     position: absolute;
-    left: 20%;
-    top: 3%;
-    font-size: 1.25em;
-    width: 20%;
-    cursor: pointer;
-    background: none;
-    color: white;
+    top: 0;
+    left: 0;
+    width: 125px;
+    height: 100vh;
+    background: maroon;
+    padding-top: 15px;
+    border-right: 0.5px solid black;
   }
 
-  .btn--gospels.burger-menu {
-    /* border: 1px solid black; */
-    height: 10%;
-    text-align: left;
-    text-indent: 20%;
+  .Gospels__button.burger-menu {
+    height: 75px;
+    text-align: center;
   }

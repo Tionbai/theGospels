@@ -1,0 +1,25 @@
+.Chapter {
+  width: 90%;
+}
+
+.Chapter__verse {
+  display: flex;
+}
+
+.Chapter__verse--id {
+  margin-top: 5px;
+  padding: 5px;
+  font-size: 0.8em;
+}
+
+.Chapter__verse--text {
+  padding: 5px;
+}
+
+@media (min-width: 768px) {
+
+  .Chapter {
+    width: 730px;
+  }
+
+}

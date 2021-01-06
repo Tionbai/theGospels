@@ -1,42 +1,46 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export default function HeaderOpened(props) {
-    const { opened, setOpened, gospels } = props;
+  const { opened, setOpened, gospels } = props;
 
-    return (
-        <section className="Header__opened">
+  useEffect(() => {
+    const closeHeaderOpened = (e) => {
+      if (!e.target.classList.contains("toggleHeaderOpened")) {
+        setOpened(!opened);
+      }
+    };
 
-            <button
-                className="Header__burger--opened"
-                onClick={() =>
-                    setOpened(!opened)}>
-                {!opened ? <>&#9776;</> : <>&#x2715;</>}
+    if (opened) window.addEventListener("click", (e) => closeHeaderOpened(e));
 
-            </button>
+    return () =>
+      window.removeEventListener("click", (e) => closeHeaderOpened(e));
+  }, [opened]);
 
-            <button className="btn--gospels burger-menu"
-            onClick={() => setOpened(!opened)}>About</button>
+  return (
+    <section className="Header__opened toggleHeaderOpened">
+      <button
+        className="Gospels__button burger-menu"
+        onClick={() => setOpened(!opened)}
+      >
+        About
+      </button>
 
-                {gospels.map((gospel) => {
-
-                    return <>
-
-                        <button
-                            className="btn--gospels burger-menu"
-                            key={gospels.indexOf(gospel)}
-                            type="submit"
-                            onClick={() => {
-                                props.renderChapter(gospel);
-                                setOpened(!opened);
-                            }}
-                        >
-                            {`${gospel}`}
-                        </button>
-
-                    </>
-
-                })}
-
-        </section>
-    )
+      {gospels.map((gospel) => {
+        return (
+          <button
+            className="Gospels__button burger-menu"
+            key={uuidv4()}
+            type="submit"
+            onClick={() => {
+              props.renderChapter(gospel);
+              setOpened(!opened);
+            }}
+          >
+            {`${gospel}`}
+          </button>
+        );
+      })}
+    </section>
+  );
 }

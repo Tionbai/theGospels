@@ -1,0 +1,29 @@
+.Input {
+  display: flex;
+  align-items: center;
+  width: 75%;
+  margin: 10px;
+}
+
+.Input__input {
+  width: 50%;
+  height: 25px;
+  margin-right: 10px;
+  padding: 5px;
+  border-bottom: 1px solid grey;
+  flex: 1
+}
+
+.Input__label {
+  margin-left: 0.5em;
+  font-size: 0.8em;
+  color: dimgray;
+}
+
+@media (min-width: 768px) {
+
+  .Input {
+    width: 620.5px;
+  }
+
+}

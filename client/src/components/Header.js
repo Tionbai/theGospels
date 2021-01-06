@@ -1,18 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import HeaderOpened from './HeaderOpened';
 import './styles/Header.css';
+import { GospelContext } from ".././GospelContext";
 
-export default function Menu(props) {
-    const { setBook, setChapter, buttons, gospels, renderChapter } = props;
+export default function Header() {
+
+      const {
+        bookContext,
+        chapterContext,
+        gospels,
+        renderChapter
+      } = useContext(GospelContext);
+
+      const [, setBook] = bookContext;
+      const [, setChapter] = chapterContext;
 
     const [opened, setOpened] = useState(false);
 
     const refresh = () => {
         setBook(false);
         setChapter([]);
-        buttons.map((button) => {
-            button.classList.remove('selected');
-        })
     };
 
     return (
@@ -21,9 +28,9 @@ export default function Menu(props) {
         {opened && <HeaderOpened opened={opened} setOpened={setOpened} gospels={gospels} renderChapter={renderChapter}/>}
 
             <button
-                className="Header__burger"
+                className="Header__burger toggleHeaderOpened"
                 onClick={() => 
-                setOpened(!opened)}>
+                setOpened(true)}>
                 {!opened ? <>&#9776;</> : <>&#x2715;</>}
             
             </button>
@@ -37,7 +44,7 @@ export default function Menu(props) {
                 The Gospels
             </h1>
 
-            <button className="Header__character">
+            <button className="Header__login">
                 &#x1F464;
             </button>
 

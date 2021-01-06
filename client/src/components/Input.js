@@ -1,11 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { GospelContext } from ".././GospelContext";
+import './styles/Input.css';
 
-export default function Input(props) {
-    const { setSearch, chapter } = props;
-
+export default function Input() {
+    const {
+      chapterContext,
+      searchContext,
+    } = useContext(GospelContext);
+    
+    const [chapter,] = chapterContext;
+    const [, setSearch] = searchContext;
+    
     const [checked, setChecked] = useState(false);
 
-    const input = document.querySelector('.input');
+    const input = document.querySelector('.Input__input');
 
     useEffect(() => {
         if (input) {
@@ -18,10 +26,10 @@ export default function Input(props) {
 
             <section className="Input">
 
-                <input className="input" type="text" placeholder="Search..." onChange={(e) => setSearch(e.target.value)} />
+                <input className="Input__input" type="text" placeholder="Search..." onChange={(e) => setSearch(e.target.value)} />
                 <input type="checkbox" id="checkbox" onClick={() => setChecked(!checked)}
                 />
-                <label className="label" htmlFor="checkbox" name="checkbox">Pin search</label>
+                <label className="Input__label" htmlFor="checkbox" name="checkbox">Pin search</label>
 
             </section>
     )

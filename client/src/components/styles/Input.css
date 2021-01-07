@@ -11,13 +11,17 @@
   margin-right: 10px;
   padding: 5px;
   border-bottom: 1px solid grey;
-  flex: 1
+  flex: 1;
 }
 
 .Input__label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-left: 0.5em;
   font-size: 0.8em;
   color: dimgray;
+  width: 80px;
 }
 
 @media (min-width: 768px) {

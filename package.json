@@ -1,26 +1,26 @@
 {
-  "name": "the-gospels-express",
+  "name": "the-gospels",
   "version": "1.0.0",
   "description": "Express server with local data to share api with the gospels of Jesus Christ",
-  "main": "server.js",
   "scripts": {
-    "install": "npm install && cd client && npm install",
-    "start": "node server.js",
-    "server": "nodemon server.js",
-    "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
+    "install-server": "npm install --prefix server",
+    "install-client": "npm install --prefix client",
+    "install": "concurrently \"npm install\" \"npm run install-server\" \"npm run install-client\"",
+    "dev-server": "npm run dev --prefix server",
+    "dev-client": "npm start --prefix client",
+    "dev": "concurrently \"npm run dev-server\" \"npm run dev-client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tionbai/theGospels.git"
   },
   "author": "Tina Bisgaard",
-  "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.19.0",
-    "concurrently": "^5.2.0",
-    "express": "^4.17.1",
-    "uuid": "^8.3.2"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Tionbai/theGospels/issues"
   },
+  "homepage": "https://github.com/Tionbai/theGospels#readme",
   "devDependencies": {
-    "axios": "^0.21.1",
-    "nodemon": "^2.0.4"
+    "concurrently": "^5.3.0"
   }
 }

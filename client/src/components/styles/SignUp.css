@@ -1,0 +1,126 @@
+.SignUp__container {
+  flex: 1;
+  width: 100vw;
+  background-color: rgb(235, 235, 235);
+}
+
+.SignUp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  height: 70%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding-top: 30px;
+  border: 1px solid grey;
+}
+
+.SignUp__cancel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  line-height: 35px;
+  font-size: 1.25em;
+  /* border: 1px solid black; */
+}
+
+.SignUp__title {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1.25em;
+  /* border: 1px solid black; */
+}
+
+.SignUp__form,
+.SignUp__password,
+.SignUp__signup {
+  width: 90%;
+}
+
+.SignUp__form--input, .SignUp__form--name--input,
+.SignUp__signup {
+  height: 30px;
+}
+
+.SignUp__password,
+.SignUp__signin {
+  color: #2196f3;
+}
+
+.SignUp__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border: 1px solid black; */
+}
+
+.SignUp__form--name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 60px;
+  margin: 5px;
+  /* border: 1px solid black; */
+}
+
+.SignUp__form--name--label {
+  display: flex;
+  flex-direction: column;
+  width: 49%;
+  font-size: 0.9em;
+  /* border: 1px solid black; */
+}
+
+.SignUp__form--name--input {
+  margin-top: 5px;
+  border: 1px solid grey;
+}
+
+.SignUp__form--label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 60px;
+  margin: 5px;
+  font-size: 0.9em;
+  /* border: 1px solid black; */
+}
+
+.SignUp__form--input {
+  margin-top: 5px;
+  border: 1px solid grey;
+  /* border-bottom: 1px solid grey; */
+}
+
+.SignUp__password {
+  /* border: 1px solid black; */
+  text-align: right;
+}
+
+.SignUp__signup {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  background-color: #2196f3;
+  color: white;
+  border: 1px solid grey;
+}
+
+.SignUp__signin > span {
+  color: black;
+}
+
+.SignUp__terms {
+  width: 90%;
+  text-align: center;
+  margin-top: 30px;
+  font-size: 0.8em;
+}
+
+/* Focused: 12% white shade over the color */
+/* Pressed: 1976D2 */

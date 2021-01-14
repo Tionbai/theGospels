@@ -1,0 +1,34 @@
+.Resources {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid black; */
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.Resources__link {
+  margin-top: 15px;
+  display: flex;
+  /* border: 1px solid black; */
+  font-size: 0.9em;
+}
+
+.Resources__link-image--Bible, .Resources__link-image--BibleGateWay, .Resources__link-image--BibleHub {
+  margin-right: 5px;
+}
+
+.Resources__link-image--Bible, .Resources__link-image--BibleGateWay {
+  height: 20px;
+}
+
+.Resources__link-image--Bible {
+  max-width: 20px;
+}
+
+.Resources__link-image--BibleHub {
+  height: 24px;
+  background-color: #017bce;
+  /* filter: invert(36%) sepia(93%) saturate(4751%) hue-rotate(187deg) brightness(96%) contrast(101%); */
+  padding: 0px 2.5px 0px 2.5px;
+}

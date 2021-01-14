@@ -1,0 +1,15 @@
+.Footer {
+  width: 100%;
+  background-color: maroon;
+  color: rgba(255, 255, 255, 0.75);
+  padding: 7.5px 0px 7.5px 0px;
+  text-align: center;
+  line-height: 20px;
+  font-size: 0.8em;
+}
+
+.Footer__terms {
+  margin: 5px;
+  font-weight: bold;
+  color: white;
+}

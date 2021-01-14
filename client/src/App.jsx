@@ -1,34 +1,28 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 import './App.css';
-import Gospels from './components/Gospels';
-import Chapter from './components/Chapter';
-import Pages from './components/Pages';
-import Input from './components/Input';
 import Header from './components/Header';
-import { GospelContext } from './GospelContext';
+import Home from './components/Home';
+import Login from './components/Login';
+import SignUp from './components/SignUp';
+import Bible from './components/Bible';
+import Footer from './components/Footer';
+import About from './components/About';
+import Navbar from './components/Navbar';
 
 const App = () => {
-  const { bibleContext, bookContext } = useContext(GospelContext);
-
-  const [bible] = bibleContext;
-  const [book] = bookContext;
-
-  if (!bible) {
-    return <p>Loading...</p>;
-  }
-
   return (
     <main className="App">
       <Header />
-      <Gospels />
-      {book && (
-        <>
-          <Input />
-          <Pages />
-          <Chapter />
-          <Pages />
-        </>
-      )}
+      <Navbar />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/Login" component={Login} />
+        <Route exact path="/Signup" component={SignUp} />
+        <Route exact path="/Bible" component={Bible} />
+        <Route exact path="/About" component={About} />
+      </Switch>
+      <Footer />
     </main>
   );
 };

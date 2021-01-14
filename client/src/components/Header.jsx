@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import HeaderOpened from './HeaderOpened';
 import './styles/Header.css';
 import { GospelContext } from '../GospelContext';
@@ -36,11 +37,11 @@ export default function Header() {
           refresh();
         }}
       >
-        The Gospels
+        <Link to="/">The Gospels</Link>
       </h1>
 
       <button type="button" className="Header__login">
-        &#x1F464;
+        <Link to="/Login">&#x1F464;</Link>
       </button>
     </header>
   );

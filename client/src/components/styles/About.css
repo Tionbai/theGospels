@@ -1,0 +1,41 @@
+.About {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.About__header {
+  width: 90%;
+  height: 160px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.About__header__h {
+  margin-bottom: 5px;
+}
+
+.About__header__image {
+  width: 100%;
+  height: 175px;
+  position: absolute;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.About__statement {
+  width: 90%;
+  margin: 10px 0px 10px 0px;
+  padding: 10px;
+}
+
+.About__statement__header {
+  margin-bottom: 5px;
+  font-style: italic;
+}
+
+.About__statement__p {
+  margin-top: 10px;
+  font-size: 0.9em;
+}

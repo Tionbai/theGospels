@@ -1,0 +1,46 @@
+.DailyVerse__loading {
+  display: flex;
+  width: px;
+  justify-content: space-evenly;
+}
+
+.DailyVerse__container {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 20px;
+}
+
+.DailyVerse__header {
+  font-weight: normal;
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+  text-align: right;
+}
+
+.DailyVerse__date {
+  font-size: 0.7em;
+  color: grey;
+  font-variant: normal;
+}
+
+.DailyVerse {
+  padding: 15px;
+  border: 2px solid grey;
+}
+
+.DailyVerse__book {
+  margin-bottom: 5px;
+}
+
+.DailyVerse__chapter-verse {
+  font-weight: normal;
+}
+
+.DailyVerse__text {
+  text-indent: 10px;
+  font-style: italic;
+  font-size: 0.9em;
+}

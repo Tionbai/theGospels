@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import { GospelContext } from '../GospelContext';
@@ -25,28 +26,40 @@ export default function HeaderOpened(props) {
   }, [opened]);
 
   return (
-    <section className="Header__opened toggleHeaderOpened">
+    <section className="HeaderOpened toggleHeaderOpened">
       <button
-        className="Gospels__button burger-menu"
+        className="HeaderOpened__button burger-menu"
         type="button"
         onClick={() => setOpened(!opened)}
       >
-        About
+        <Link to="/About">About</Link>
+      </button>
+      <button
+        className="HeaderOpened__button burger-menu"
+        type="button"
+        onClick={() => {
+          renderChapter('Matthew');
+          setOpened(!opened);
+        }}
+      >
+        <Link to="/Bible">Start Reading</Link>
       </button>
 
       {gospels.map((gospel) => {
         return (
-          <button
-            className="Gospels__button burger-menu"
-            key={uuidv4()}
-            type="submit"
-            onClick={() => {
-              renderChapter(gospel);
-              setOpened(!opened);
-            }}
-          >
-            {`${gospel}`}
-          </button>
+          <Link to="/Bible" key={uuidv4()}>
+            <button
+              className="HeaderOpened__button burger-menu"
+              key={uuidv4()}
+              type="submit"
+              onClick={() => {
+                renderChapter(gospel);
+                setOpened(!opened);
+              }}
+            >
+              {`${gospel}`}
+            </button>
+          </Link>
         );
       })}
     </section>

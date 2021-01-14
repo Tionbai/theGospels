@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import './styles/Gospels.css';
 import { v4 as uuidv4 } from 'uuid';
 import { GospelContext } from '../GospelContext';
@@ -7,33 +8,25 @@ export default function Gospels() {
   const { bookContext, gospels, renderChapter } = useContext(
     GospelContext,
   );
-
   const [book] = bookContext;
-
   return (
-    <>
-      {!book ? (
-        <nav className="Gospels">
-          {gospels.map((gospel) => {
-            return (
-              <button
-                className="Gospels__button"
-                key={uuidv4()}
-                type="submit"
-                onClick={() => {
-                  renderChapter(gospel);
-                }}
-              >
-                {`${gospel}`}
-              </button>
-            );
-          })}
-        </nav>
-      ) : (
-        <nav className="Gospels--selected">
-          <p>{book.name}</p>
-        </nav>
-      )}
-    </>
+    <nav className="Gospels">
+      {gospels
+        .filter((gospel) => book.name !== gospel)
+        .map((gospel) => {
+          return (
+            <button
+              className="Gospels__button"
+              type="submit"
+              key={uuidv4()}
+              onClick={() => {
+                renderChapter(gospel);
+              }}
+            >
+              <Link to="/Bible">{`${gospel}`}</Link>
+            </button>
+          );
+        })}
+    </nav>
   );
 }
